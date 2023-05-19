@@ -14,23 +14,24 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Age</th>
-        <th scope="col">Bio</th>
-        <th scope="col">Action </th>
+        <th scope="col">Judul</th>
+        <th scope="col">Ringkasan</th>
+        <th scope="col">Tahun</th>
+        <th scope="col">Poster </th>
       </tr>
     </thead>
     <tbody>
-        @forelse ($casts as $key => $item)
+        @forelse ($pilm as $key => $item)
             <tr>
                 <th scope="row">{{$key +1}}</th>
-                 <td>{{$item->nama}}</td>
-                 <td>{{$item->umur}}</td>
-                 <td>{{$item->bio}}</td>
+                 <td>{{$item->Judul}}</td>
+                 <td>{{$item->Ringkasan}}</td>
+                 <td>{{$item->Tahun}}</td>
+                 <td>{{$item->Poster}}</td>
                 <td>
-                    <form action="/cast/{{$item->id}}" method="post">
-                    <a href="/cast/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
-                    <a href="/cast/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/film/{{$item->id}}" method="post">
+                    <a href="/film/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
+                    <a href="/film/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 
                         @csrf
                         @method('delete')
@@ -45,3 +46,4 @@
     </tbody>
   </table>
 @endsection
+

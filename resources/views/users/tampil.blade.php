@@ -1,36 +1,36 @@
 @extends('layout.master')
 
 @section('title')
-        Halaman Tampil Data Cast
+        Halaman Profil
 @endsection
 
 @section('sub-title')
-        Halaman Data Cast
+        Profil
 @endsection
 @section('content')
 
-<a href="/cast/create" class="btn btn-primary btn-sm">Tambah</a>
+<a href="/profile/create" class="btn btn-primary btn-sm">Tambah</a>
 <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Age</th>
-        <th scope="col">Bio</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
         <th scope="col">Action </th>
       </tr>
     </thead>
     <tbody>
-        @forelse ($casts as $key => $item)
+        @forelse ($profill as $key => $item)
             <tr>
                 <th scope="row">{{$key +1}}</th>
-                 <td>{{$item->nama}}</td>
-                 <td>{{$item->umur}}</td>
-                 <td>{{$item->bio}}</td>
+                 <td>{{$item->name}}</td>
+                 <td>{{$item->email}}</td>
+                 <td>{{$item->password}}</td>
                 <td>
-                    <form action="/cast/{{$item->id}}" method="post">
-                    <a href="/cast/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
-                    <a href="/cast/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/users/{{$item->id}}" method="post">
+                    <a href="/users/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
+                    <a href="/users/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 
                         @csrf
                         @method('delete')

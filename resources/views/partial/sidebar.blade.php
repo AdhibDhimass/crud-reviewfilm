@@ -36,10 +36,45 @@
         </li>
 
         <li class="nav-item">
+          <a href="/users" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              User
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a href="/cast" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Cast
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/genre" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Genre
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/profile/create" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Profil
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/film" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Film
             </p>
           </a>
         </li>

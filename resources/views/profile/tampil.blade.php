@@ -1,15 +1,15 @@
 @extends('layout.master')
 
 @section('title')
-        Halaman Tampil Data Cast
+        Halaman Profil
 @endsection
 
 @section('sub-title')
-        Halaman Data Cast
+        Profil
 @endsection
 @section('content')
 
-<a href="/cast/create" class="btn btn-primary btn-sm">Tambah</a>
+<a href="/profile/create" class="btn btn-primary btn-sm">Tambah</a>
 <table class="table">
     <thead>
       <tr>
@@ -21,16 +21,17 @@
       </tr>
     </thead>
     <tbody>
-        @forelse ($casts as $key => $item)
+        @forelse ($profill as $key => $item)
             <tr>
                 <th scope="row">{{$key +1}}</th>
-                 <td>{{$item->nama}}</td>
                  <td>{{$item->umur}}</td>
                  <td>{{$item->bio}}</td>
+                 <td>{{$item->alamat}}</td>
+                 <td>{{$item->user_id}}</td>
                 <td>
-                    <form action="/cast/{{$item->id}}" method="post">
-                    <a href="/cast/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
-                    <a href="/cast/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/profile/{{$item->id}}" method="post">
+                    <a href="/profile/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
+                    <a href="/profile/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 
                         @csrf
                         @method('delete')

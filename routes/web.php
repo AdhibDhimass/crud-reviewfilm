@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CastController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\PeranController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 
 
 /*
@@ -32,7 +37,22 @@ Route::get('/cast/create',[CastController::class, 'create']);
 Route::post('/cast', [CastController::class, 'store']);
 Route::get('/cast/{id}', [CastController::class, 'show']);
 //update data
-Route::get('/cast/{id}/edit', [CastController::class, 'edit']);
+Route::get('/cast/{id}/edit', [CastController::class, 'edit', ]);
 Route::put('/cast/{id}', [CastController::class, 'update']);
 //delete data
 Route::delete('/cast/{id}', [CastController::class, 'destory']);
+
+//genre
+Route::resource('genre', GenreController::class);
+
+//crud film
+Route::resource('film', FilmController::class);
+
+//peran
+Route::resource('peran', PeranController::class);
+
+//profil
+Route::resource('profile', ProfileController::class);
+
+//user
+Route::resource('users', UsersController::class);
