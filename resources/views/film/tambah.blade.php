@@ -37,7 +37,9 @@
         <div class="mb-3">
             <label for="genre_id" class="form-label">Genre</label>
             <select name="genre_id" class="form-select" id="genre_id" required>
-
+                @foreach ($genree as $genre)
+                <option value="{{ $genre->id }}">{{ $genre->nama }}</option>
+                @endforeach
             </select>
         </div>
 

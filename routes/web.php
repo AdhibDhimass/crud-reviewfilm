@@ -9,6 +9,7 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\PeranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\KritikController;
 
 
 /*
@@ -56,3 +57,5 @@ Route::resource('profile', ProfileController::class);
 
 //user
 Route::resource('users', UsersController::class);
+
+Route::resource('kritik', KritikController::class);

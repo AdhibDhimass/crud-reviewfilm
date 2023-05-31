@@ -36,7 +36,7 @@ class GenreController extends Controller
 
     Genre::create( $validateData );
 
-    return redirect()->back()->with('success', 'Genre berhasil ditambahkan');
+    return redirect()->route('genre.index')->with('success', 'Genre berhasil ditambahkan');
     }
 
     /**

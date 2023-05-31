@@ -13,8 +13,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profill = profile::all();
-        return view('profile.tampil', compact('profill'));
+
+        return view('profile.tampil', [
+            'profill' => Profile::all()
+        ]);
     }
 
     /**

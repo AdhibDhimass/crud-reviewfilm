@@ -10,7 +10,7 @@
 @section('content')
 
 
-<form action="/profile" method="POST" enctype="multipart/form-data">
+<form action="/users" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
       <label>Name</label>
@@ -38,7 +38,7 @@
     @error('password')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-    
+
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -12,8 +12,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $user = users::all();
-        return view('users.tampil', compact('user'));
+        $profill = User::all();
+        return view('users.tampil', compact('profill'));
     }
 
     /**
@@ -35,7 +35,7 @@ class UsersController extends Controller
             'password' => 'required'
         ]);
 
-        Users::create( $validateData );
+        User::create( $validateData );
 
         return redirect()->back()->with('success', 'User berhasil ditambahkan');
     }
@@ -43,32 +43,47 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show( User $user)
     {
-        //
+        return view('users.detail', compact('user'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( User $user)
     {
-        //
+        return view('users.edit', compact('user'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  User $user)
     {
-        //
+        $validatedUserData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'required',
+        ]);
+
+        // Update data user
+        $user->update($validatedUserData);
+
+        // Redirect ke halaman detail user
+        return redirect()->route('users.index', $user->id)->with('success', 'User updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        // Redirect ke halaman index user
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
 }

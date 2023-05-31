@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title')
-        Halaman Tampil Data Cast
+        Halaman Tampil Data Movie
 @endsection
 
 @section('sub-title')
@@ -9,7 +9,7 @@
 @endsection
 @section('content')
 
-<a href="/cast/create" class="btn btn-primary btn-sm">Tambah</a>
+<a href="/film/create" class="btn btn-primary btn-sm">Tambah</a>
 <table class="table">
     <thead>
       <tr>
@@ -21,17 +21,17 @@
       </tr>
     </thead>
     <tbody>
-        @forelse ($pilm as $key => $item)
+        @forelse ($pilm as $p)
             <tr>
-                <th scope="row">{{$key +1}}</th>
-                 <td>{{$item->Judul}}</td>
-                 <td>{{$item->Ringkasan}}</td>
-                 <td>{{$item->Tahun}}</td>
-                 <td>{{$item->Poster}}</td>
+                <th scope="row">{{$loop->iteration}}</th>
+                 <td>{{$p->judul}}</td>
+                 <td>{{$p->ringkasan}}</td>
+                 <td>{{$p->tahun}}</td>
+                 <td>{{$p->poster}}</td>
                 <td>
-                    <form action="/film/{{$item->id}}" method="post">
-                    <a href="/film/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
-                    <a href="/film/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/film/{{$p->id}}" method="post">
+                    <a href="/film/{{$p->id}}" class="btn btn-info btn-sm">Detail</a>
+                    <a href="/film/{{$p->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 
                         @csrf
                         @method('delete')

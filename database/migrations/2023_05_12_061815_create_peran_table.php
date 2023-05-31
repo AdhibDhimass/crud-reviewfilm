@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cast_id');
             $table->string('nama', 45);
 
-            $table->foreign('film_id')->references('id')->on('film')->onDelete('cascade');
+            $table->foreign('film_id')->references('id')->on('films')->onDelete('cascade');
             $table->foreign('cast_id')->references('id')->on('cast')->onDelete('cascade');
             $table->timestamps();
         });

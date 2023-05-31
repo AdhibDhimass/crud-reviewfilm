@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Genre;
 
 
 class FilmController extends Controller
@@ -22,7 +23,9 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return view('film.tambah');
+        return view('film.tambah', [
+            'genree' => Genre::all()
+        ]);
     }
 
     /**
@@ -35,41 +38,56 @@ class FilmController extends Controller
             'ringkasan' => 'required',
             'tahun' => 'required|integer',
             'poster' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'genre_id' => 'required|exists:genres,id',
+            'genre_id' => 'required|exists:genre_id',
         ]);
 
         // Upload poster
-        $posterPath = $request->file('poster')->store('posters');
+        $postername = time().'.'.$request->poster->extension();
+        $request->poster->move(public_path('poster'), $postername);
 
-        $validatedData['poster'] = $posterPath;
+        $film = new Film();
+        $film->judul = $request->judul;
+        $film->ringkasan = $request->ringkasan;
+        $film->tahun = $request->tahun;
+        $film->poster = $postername;
+        $film->genre_id = $request->genre_id;
+        $film->save();
 
-        Film::create($validatedData);
-
-        return redirect()->route('film.tampil')->with('success', 'Film created successfully.');
+        return redirect('/film')->with('success', 'Film created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Film $film)
     {
-        return view('film.tampil', compact('film'));
+        return view('film.detail', compact('film'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $film = Film::findOrFail($id);
+        $genree = Genre::all();
+        return view('film.edit', compact('film', 'genree'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Film $film)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required',
+            'tahun' => 'required|integer',
+            // tambahkan validasi untuk atribut lainnya
+        ]);
+
+        $film->update($validatedData);
+
+        return redirect('/film')->with('success', 'Film updated successfully');
     }
 
     /**
@@ -77,6 +95,9 @@ class FilmController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $film = Film::findOrFail($id);
+        $film->delete();
+
+        return redirect('/film')->with('success', 'Film deleted successfully');
     }
 }

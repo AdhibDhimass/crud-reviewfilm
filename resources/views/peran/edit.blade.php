@@ -1,11 +1,11 @@
 @extends('layout.master')
 
 @section('title')
-        Peran
+        Cast
 @endsection
 
 @section('sub-title')
-        Peran Table
+        Cast Table
 @endsection
 
 @push('scripts')
@@ -13,19 +13,20 @@
 @endpush
 
 @section('content')
-    <h1>Tambah Peran Baru</h1>
+    <h1>Edit Peran</h1>
 
-    <form action="{{ route('peran.store') }}" method="POST">
+    <form action="{{ route('peran.update', $peran->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="form-group">
-            <label for="cast_id">Name</label>
+            <label for="nama">Name</label>
             <input type="text" name="nama" class="form-control" id="nama" required>
 
         <div class="form-group">
             <label for="film_id">Film</label>
             <select name="film_id" id="film_id" class="form-control">
                 @foreach ($pilm as $film)
-                    <option value="{{ $film->id }}">{{ $film->judul }}</option>
+                    <option value="{{ $film->id }}" {{ $film->id == $peran->film_id ? 'selected' : '' }}>{{ $film->judul }}</option>
                 @endforeach
             </select>
         </div>
@@ -33,10 +34,9 @@
             <label for="cast_id">Cast</label>
             <select name="cast_id" id="cast_id" class="form-control">
                 @foreach ($casts as $cast)
-                    <option value="{{ $cast->id }}">{{ $cast->nama }}</option>
+                    <option value="{{ $cast->id }}" {{ $cast->id == $peran->cast_id ? 'selected' : '' }}>{{ $cast->nama }}</option>
                 @endforeach
             </select>
-
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>

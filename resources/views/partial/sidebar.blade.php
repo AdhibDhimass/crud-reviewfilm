@@ -63,7 +63,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/profile/create" class="nav-link">
+          <a href="/profile" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Profil
@@ -78,6 +78,21 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+            <a href="/peran" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Peran
+              </p>
+            </a>
+        <li class="nav-item">
+            <a href="/kritik" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Kritik
+              </p>
+            </a>
+          </li>
 
         <li class="nav-item">
           <a href="../widgets.html" class="nav-link">

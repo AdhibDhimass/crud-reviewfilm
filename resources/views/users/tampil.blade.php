@@ -9,14 +9,13 @@
 @endsection
 @section('content')
 
-<a href="/profile/create" class="btn btn-primary btn-sm">Tambah</a>
+<a href="/users/create" class="btn btn-primary btn-sm">Tambah</a>
 <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
-        <th scope="col">Password</th>
         <th scope="col">Action </th>
       </tr>
     </thead>
@@ -26,7 +25,7 @@
                 <th scope="row">{{$key +1}}</th>
                  <td>{{$item->name}}</td>
                  <td>{{$item->email}}</td>
-                 <td>{{$item->password}}</td>
+
                 <td>
                     <form action="/users/{{$item->id}}" method="post">
                     <a href="/users/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
